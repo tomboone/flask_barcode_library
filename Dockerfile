@@ -20,5 +20,5 @@ RUN ln -s /run/secrets/ssh_key /root/.ssh/id_rsa
 RUN ln -s /run/secrets/gitconfig /root/.gitconfig
 
 
-ENTRYPOINT ["poetry", "run", "gunicorn", "wsgi:app", "--bind", "0.0.0.0:5000", "--workers", "4"]
+ENTRYPOINT ["poetry", "run", "flask", "run", "--debug", "--host", "0.0.0.0", "--port", "5000"]
 # CMD tail -f /dev/null

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ config.SITE_NAME }}</h1>
+    <ul>
+        <li><a href="{{ url_for('scanner.index') }}">Barcode Scanner</a></li>
+        <li><a href="{{ url_for('shelflist.index') }}">Shelf List</a></li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,51 @@
+services:
+  flask_barcode_library:
+    build: .
+    container_name: flask_barcode_library
+    volumes:
+      - .:/app
+    working_dir: /app
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.flask_barcode_library.rule=Host(`barcode.jat.localhost`)"
+      - "traefik.http.routers.flask_barcode_library.tls=true"
+      - "traefik.http.routers.flask_barcode_library.entrypoints=websecure"
+    environment:
+      SECRET_KEY: "thisisasecretkey"
+      SQLALCHEMY_DATABASE_URI: "mariadb+mariadbconnector://user:password@flask_barcode_library_db:3306/mydb"
+      SITE_NAME: "Flask Barcode Library"
+    secrets:
+      - ssh_key
+      - gitconfig
+    depends_on:
+      - flask_barcode_library_db
+    networks:
+      - proxy
+
+  flask_barcode_library_db:
+    image: mariadb:latest
+    container_name: flask_barcode_library_db
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3334:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - proxy
+
+secrets:
+  ssh_key:
+    file: ${SSH_KEY_FILE}
+  gitconfig:
+    file: ${GITCONFIG}
+
+volumes:
+    mysql-data:
+
+networks:
+  proxy:
+    external: true

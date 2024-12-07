@@ -11,6 +11,8 @@ mariadb = "^1.1.11"
 flask-login = "^0.6.3"
 flask-wtf = "^1.2.2"
 email-validator = "^2.2.0"
+opencv-python = "^4.10.0.84"
+openlibrary-client = {git = "https://github.com/internetarchive/openlibrary-client.git"}
 
 
 [tool.poetry.group.dev.dependencies]

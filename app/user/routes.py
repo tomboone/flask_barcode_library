@@ -55,7 +55,7 @@ def login():
             flash('Login successful', 'success')
 
             return redirect(
-                url_for('user.profile')
+                url_for('home.index')
             )
 
         flash('Invalid email or password', 'error')

@@ -2,4 +2,23 @@
 
 {% block content %}
     <h1>Barcode Scanner</h1>
+    <div id="container">
+	    <video autoplay id="video"></video>
+    </div>
+    <form method="post" class="scannerForm">
+        {{ form.csrf_token }}
+        <div class="mb-3">
+            {{ form.barcode.label(class="form-label") }}
+            {{ form.barcode(class="form-control") }}
+            {% if form.barcode.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ form.barcode.errors|join(', ') }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <button id="submit" type="submit" class="btn btn-primary">Add book to library</button>
+        </div>
+    </form>
+    <script src="{{ url_for('static', filename='js/scanner.js') }}"></script>
 {% endblock %}

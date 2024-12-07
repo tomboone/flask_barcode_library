@@ -15,4 +15,4 @@ def index():
 
     :return: shelflist page
     """
-    return render_template('index.html')
+    return render_template('shelflist/index.html')

@@ -87,6 +87,7 @@ def initdb():
     """
     # pylint: disable=import-outside-toplevel,unused-import
     from app.models.user import User    # noqa: F401
+    from app.models.book import Book    # noqa: F401
     db.create_all()
     print('Database initialized')
 

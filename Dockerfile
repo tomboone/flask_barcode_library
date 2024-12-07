@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-RUN apt update &&  apt install -y libmariadb3 libmariadb-dev gcc git
+RUN apt update &&  apt install -y libmariadb3 libmariadb-dev gcc git libgl1 libglib2.0-0 libsm6 libxrender1 libxext6
 
 RUN pip install poetry
 

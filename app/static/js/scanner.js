@@ -24,9 +24,9 @@
         try {
           const barcodes = await barcodeDetector.detect(video); // Detect barcodes
           if (barcodes.length > 0) {
-            // TODO: Place barcode in the input field and submit the form
-            barcodeResult.value = barcodes[0].rawValue + "\n"; // Show first detected barcode
+            barcodeResult.value = barcodes[0].rawValue; // Show first detected barcode
             document.getElementById("submit").click(); // Submit the form
+            break
           }
         } catch (err) {
           console.error("Error detecting barcode:", err);

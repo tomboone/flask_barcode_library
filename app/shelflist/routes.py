@@ -3,6 +3,7 @@ Shelflist routes
 """
 from flask import Blueprint, render_template
 from flask_login import login_required  # type: ignore
+from app.models.book import Book
 
 bp = Blueprint('shelflist', __name__, url_prefix='/shelflist')
 
@@ -15,4 +16,5 @@ def index():
 
     :return: shelflist page
     """
-    return render_template('shelflist/index.html')
+    shelflist = Book.get_all_books()  # get all books
+    return render_template('shelflist/index.html', shelflist=shelflist)

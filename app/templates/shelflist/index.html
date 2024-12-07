@@ -2,4 +2,14 @@
 
 {% block content %}
     <h1>Shelf List</h1>
+    <ul>
+        {% for book in shelflist %}
+            <li>
+                {% if book.author is defined %}
+                    {{ book.author }},
+                {% endif %}
+                <em>{{ book.title }}</em>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

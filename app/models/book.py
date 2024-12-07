@@ -2,7 +2,7 @@
 Book model
 """
 from typing import TYPE_CHECKING
-from sqlalchemy import String
+from sqlalchemy import String, BigInteger
 from sqlalchemy.orm import Mapped, mapped_column
 from app.extensions import db
 
@@ -16,9 +16,11 @@ class Book(Model):  # pylint: disable=too-few-public-methods
     """
     Book model
     """
-    isbn: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    isbn: Mapped[int] = mapped_column(BigInteger, nullable=False)
     title: Mapped[str] = mapped_column(String(255), nullable=False)
     author: Mapped[str] = mapped_column(String(255), nullable=True)
+    callnumber: Mapped[str] = mapped_column(String(255), nullable=False)
 
     def __repr__(self):
         return f'<Book {self.author}, {self.title}>'
@@ -30,7 +32,7 @@ class Book(Model):  # pylint: disable=too-few-public-methods
 
         :return: all book objects
         """
-        return db.session.execute(db.select(Book)).scalars().all()
+        return db.session.execute(db.select(Book).order_by(Book.callnumber)).scalars().all()
 
     @staticmethod
     def get_book_by_isbn(isbn):
@@ -41,14 +43,3 @@ class Book(Model):  # pylint: disable=too-few-public-methods
         :return: book object
         """
         return db.session.execute(db.select(Book).filter_by(isbn=isbn)).scalar_one_or_none()
-
-    @staticmethod
-    def get_book_metadata(isbn):
-        """
-        Get book metadata
-
-        :param:isbn: ISBN
-        :return: metadata to create book object
-        """
-        # TODO: Query Open Library API for edition metadata
-        return

@@ -7,20 +7,21 @@
 <body>
 {% block header %}
     <header>
-        <h1>Header</h1>
+        <h2>
+            {% if title is defined %}
+                {{ title }} | {{ config.SITE_NAME }}
+            {% else %}
+                {{ config.SITE_NAME }}
+            {% endif %}
+        </h2>
     </header>
 {% endblock %}
 
 {% block content %}
-    <main>
-        <h1>Content</h1>
-    </main>
 {% endblock %}
 
 {% block footer %}
-    <footer>
-        <h1>Footer</h1>
-    </footer>
+    <footer>A Teenie Enterprises Ltd Joint</footer>
 {% endblock %}
 
 </body>

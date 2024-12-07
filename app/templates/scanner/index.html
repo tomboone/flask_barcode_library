@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Barcode Scanner</h1>
+    <h1>{{ title }}</h1>
     <div id="container">
 	    <video autoplay id="video"></video>
     </div>
@@ -20,5 +20,4 @@
             <button id="submit" type="submit" class="btn btn-primary">Add book to library</button>
         </div>
     </form>
-    <script src="{{ url_for('static', filename='js/scanner.js') }}"></script>
 {% endblock %}

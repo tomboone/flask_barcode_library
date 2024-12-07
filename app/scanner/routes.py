@@ -25,7 +25,11 @@ def index():
         barcode = form.barcode.data  # get barcode
         return redirect(url_for('scanner.add_book', book_id=barcode))  # redirect to book page
 
-    return render_template('scanner/index.html', form=form)  # render scanner page
+    return render_template(
+        'scanner/index.html',
+        form=form,
+        title='Barcode Scanner'
+    )
 
 
 @bp.route('/<int:book_id>')

@@ -17,4 +17,8 @@ def index():
     :return: shelflist page
     """
     shelflist = Book.get_all_books()  # get all books
-    return render_template('shelflist/index.html', shelflist=shelflist)
+    return render_template(
+        'shelflist/index.html',
+        shelflist=shelflist,
+        title='Shelf List'
+    )

@@ -4,7 +4,7 @@
   const video = document.getElementById("video");
   const barcodeResult = document.getElementById("barcode");
 
-  vidoe.setAttribute("autoplay", "");
+  video.setAttribute("autoplay", "");
   video.setAttribute("muted", "");
   video.setAttribute("playsinline", "");
 

@@ -6,12 +6,12 @@
             <h1>{{ title }}</h1>
         </div>
         <div class="col col-4 text-end">
-            <a href="{{ url_for('shelflist.missing_callnumber') }}" class="btn btn-warning">Books w/o Call Numbers</a>
+            <a href="{{ url_for('shelflist.index') }}" class="btn btn-success">Back to Library</a>
         </div>
     </div>
     {% if shelflist|length == 0 %}
         <div class="alert alert-info" role="alert">
-            Your library is empty.
+            No books with missing call numbers
         </div>
     {% endif %}
     <ul class="list-group mb-3">

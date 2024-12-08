@@ -26,13 +26,26 @@ class Book(Model):  # pylint: disable=too-few-public-methods
         return f'<Book {self.author}, {self.title}>'
 
     @staticmethod
-    def get_all_books():
+    def get_all_books_with_callnumbers():
         """
         Get books
 
         :return: all book objects
         """
-        return db.session.execute(db.select(Book).order_by(Book.callnumber)).scalars().all()
+        return db.session.execute(
+            db.select(Book).filter(Book.callnumber != '').order_by(Book.callnumber)
+        ).scalars().all()
+
+    @staticmethod
+    def get_books_missing_callnumbers():
+        """
+        Get books missing call numbers
+
+        :return: books missing call numbers
+        """
+        return db.session.execute(
+            db.select(Book).filter(Book.callnumber == '').order_by(Book.title)
+        ).scalars().all()
 
     @staticmethod
     def get_book_by_isbn(isbn):

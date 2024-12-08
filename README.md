@@ -33,6 +33,11 @@ Dockefile and docker-compose.yml included for local development.
     ```bash
     nano .env
     ``` 
+   
+    ```
+    SSH_KEY_FILE=/path/to/ssh/key
+    GITCONFIG_FILE=/path/to/gitconfig
+    ```
 
 3. Start development containers and SSH into the flask container.
     ```bash
@@ -45,11 +50,6 @@ Dockefile and docker-compose.yml included for local development.
     export SQLALCHEMY_DATABASE_URI=mariadb+mariadbconnector://user:password@flask_barcode_library_db:3306/myd
     flask initdb
     flask createuser -e <email> -p <password>
-    ```
-   
-    ```
-    SSH_KEY_FILE=/path/to/ssh/key
-    GITCONFIG_FILE=/path/to/gitconfig
     ```
 
 Load app: [http://flask-barcode-library.localhost](http://flask-barcode-library.jat.localhost)

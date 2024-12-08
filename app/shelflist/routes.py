@@ -45,10 +45,8 @@ def edit_book(isbn):
     if form.validate_on_submit():  # if form is submitted
         book.isbn = form.isbn.data  # update isbn
         book.title = form.title.data  # update title
-        if form.author.data:  # if author is provided
-            book.author = form.author.data  # update author
-        if form.callnumber.data:  # if call number is provided
-            book.callnumber = form.callnumber.data  # update call number
+        book.author = form.author.data  # update author
+        book.callnumber = form.callnumber.data  # update call number
 
         db.session.commit()  # commit changes
 

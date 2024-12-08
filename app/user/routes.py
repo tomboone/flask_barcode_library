@@ -3,6 +3,8 @@ User routes
 """
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import current_user, login_required, logout_user  # type: ignore
+from werkzeug.security import generate_password_hash
+from app.extensions import db
 from app.forms.login_form import LoginForm
 from app.forms.user_form import UserForm
 from app.models.user import User

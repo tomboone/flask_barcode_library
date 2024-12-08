@@ -48,4 +48,4 @@ Book metadata and call numbers retrieved from the [Open Library API](https://ope
     flask createuser -e <email> -p <password>
     ```
 
-Load app: [http://flask-barcode-library.localhost](http://flask-barcode-library.jat.localhost)
+Load app: [https://barcode.jat.localhost](http://flask-barcode-library.jat.localhost)

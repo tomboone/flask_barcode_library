@@ -1,7 +1,7 @@
 """
 Home routes
 """
-from flask import Blueprint, render_template
+from flask import Blueprint, redirect, url_for
 from flask_login import login_required  # type: ignore
 
 bp = Blueprint('home', __name__)
@@ -15,4 +15,4 @@ def index():
 
     :return: home page
     """
-    return render_template('home/index.html')
+    return redirect(url_for('shelflist.index'))

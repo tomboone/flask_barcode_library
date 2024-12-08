@@ -94,7 +94,7 @@ def add_book(book_id):
     db.session.commit()  # commit changes
 
     flash(  # flash message
-        f'Book "{book}" added to library',
+        f'Book "{book.title}" added to library',
         'success'
     )
 

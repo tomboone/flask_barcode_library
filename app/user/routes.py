@@ -4,6 +4,7 @@ User routes
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import current_user, login_required, logout_user  # type: ignore
 from app.forms.login_form import LoginForm
+from app.forms.user_form import UserForm
 from app.models.user import User
 
 bp = Blueprint('user', __name__, url_prefix='/user')
@@ -21,7 +22,7 @@ def index():
     )
 
 
-@bp.route('/profile')
+@bp.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
     """
@@ -29,7 +30,21 @@ def profile():
 
     :return: user profile
     """
-    return render_template('user/profile.html')
+    user = User.get_user(current_user.id)  # get current user
+    form = UserForm(obj=user)  # create form instance with user data
+
+    if form.validate_on_submit():  # if form is submitted
+        user.email = form.email.data
+        user.password = generate_password_hash(form.new_password.data)
+        db.session.commit()
+        flash('Profile updated', 'success')
+        return redirect(url_for('user.profile'))
+
+    return render_template(
+        'user/profile.html',
+        form=form,
+        title='User Profile'
+    )
 
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -77,4 +92,4 @@ def logout():
     """
     logout_user()
 
-    return render_template('logout.html')
+    return redirect(url_for('shelflist.index'))

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<div class="row">
+    <form method="post">
+        {{ form.csrf_token }}
+        <div class="mb-3">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+            {% if form.email.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ form.email.errors|join(', ') }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control") }}
+            <small id="passwordHelpBlock" class="form-text text-muted">
+                To update email only, enter your current password. To update password, enter your new password.
+            </small>
+            {% if form.password.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ form.password.errors|join(', ') }}
+                </div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+{% endblock %}

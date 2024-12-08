@@ -50,17 +50,18 @@ def add_book(book_id):
         )
         return redirect(url_for('scanner.index'))
 
-    try:
-        r = requests.get(  # query Open Library Search API for authors and call number
+    r = requests.get(  # query Open Library Search API for authors and call number
             f'https://openlibrary.org/search.json?isbn={book_id}',
             timeout=30
-        )
-    except requests.exceptions.Timeout:
-        abort(504, 'Request timed out')  # return 504
+    )
 
     # noinspection PyUnboundLocalVariable
     if r.status_code != 200 or len(r.json()['docs']) == 0:  # if book not found
         abort(404, f'{book_id} not found')  # return 404
+
+    callnumber = ''  # initialize call number
+    if 'lcc_sort' in r.json()['docs'][0]:  # if call number exists
+        callnumber = r.json()['docs'][0]['lcc_sort']  # get call number
 
     authors = ''  # initialize authors
 
@@ -71,13 +72,10 @@ def add_book(book_id):
     if len(r.json()['docs'][0]['author_name']) > 2:  # if more than two authors set authors with commas and 'and'
         authors = ', '.join(r.json()['docs'][0]['author_name'][:-1]) + f', and {r.json()["docs"][0]["author_name"][-1]}'
 
-    try:
-        rt = requests.get(  # query Open Library ISBN API for title and subtitle
+    rt = requests.get(  # query Open Library ISBN API for title and subtitle
             f'https://openlibrary.org/isbn/{book_id}.json',
             timeout=30
-        )
-    except requests.exceptions.Timeout:
-        abort(504, 'Request timed out')
+    )
 
     # noinspection PyUnboundLocalVariable
     title = rt.json()['title']
@@ -85,8 +83,6 @@ def add_book(book_id):
     if 'subtitle' in rt.json():  # if subtitle exists
         subtitle = rt.json()['subtitle']  # get subtitle
         title = f'{title}: {subtitle}'  # combine title and subtitle
-
-    callnumber = r.json()['docs'][0]['lcc_sort']  # get call number
 
     book = Book(isbn=book_id, title=title, author=authors, callnumber=callnumber)  # create book object
 

@@ -12,15 +12,6 @@ Barcodes scanned using the [JavaScript Barcode Detection API](https://developer.
 
 Book metadata and call numbers retrieved from the [Open Library API](https://openlibrary.org/developers/api).
 
-Key dependencies:
-
-- Flask 
-- [Flask-SQLAlchemy](https://flask-sqlalchemy.readthedocs.io/en/stable/) (w/[MariaDB Connector](https://pypi.org/project/mariadb/))
-- [Flask-WTF](https://flask-wtf.readthedocs.io/en/1.2.x/)
-- [Flask-Login](https://flask-login.readthedocs.io/en/latest/)
-- [Requests](https://requests.readthedocs.io/en/stable/) (for [Open Library API](https://openlibrary.org/developers/api))
-- [JavaScript Barcode Detection API](https://developer.mozilla.org/en-US/docs/Web/API/Barcode_Detection_API) (for barcode scanning)
-
 Dockefile and docker-compose.yml included for local development.
 
 ## Local Development

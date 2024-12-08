@@ -18,11 +18,29 @@ def index():
 
     :return: shelflist page
     """
-    shelflist = Book.get_all_books()  # get all books
+    shelflist = Book.get_all_books_with_callnumbers()  # get all books
+
+    return render_template(  # render shelflist page
+        'shelflist/index.html',  # template
+        shelflist=shelflist,  # shelflist
+        title='Library'  # title
+    )
+
+
+@bp.route('/missing-callnumber')
+@login_required
+def missing_callnumber():
+    """
+    Shelflist index
+
+    :return: shelflist page
+    """
+    shelflist = Book.get_books_missing_callnumbers()  # get books missing call numbers
+
     return render_template(
-        'shelflist/index.html',
-        shelflist=shelflist,
-        title='Library'
+        'shelflist/missing.html',  # template
+        shelflist=shelflist,  # shelflist
+        title='Books without Call Numbers'  # title
     )
 
 

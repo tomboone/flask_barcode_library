@@ -4,15 +4,11 @@
 ![flake8](https://github.com/tomboone/flask_barcode_library/actions/workflows/flake8.yml/badge.svg)
 ![mypy](https://github.com/tomboone/flask_barcode_library/actions/workflows/mypy.yml/badge.svg)
 
-Scan book barcodes to add to library. Generates a list of books sorted by LC call number.
+Scan book barcodes to add to library. Generates a list of books sorted by LC call number. Designed to sort books in a home library for shelving by subject. (No more manual sorting!)
 
-Designed to sort books in a home library for shelving by subject. (No more manual sorting!)
-
-Barcodes scanned using the [JavaScript Barcode Detection API](https://developer.mozilla.org/en-US/docs/Web/API/Barcode_Detection_API) and stored in a MariaDB database.
+Barcodes scanned using the [JavaScript Barcode Detection API](https://developer.mozilla.org/en-US/docs/Web/API/Barcode_Detection_API).
 
 Book metadata and call numbers retrieved from the [Open Library API](https://openlibrary.org/developers/api).
-
-Dockefile and docker-compose.yml included for local development.
 
 ## Local Development
 

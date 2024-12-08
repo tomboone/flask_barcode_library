@@ -4,6 +4,10 @@
   const video = document.getElementById("video");
   const barcodeResult = document.getElementById("barcode");
 
+  vidoe.setAttribute("autoplay", "");
+  video.setAttribute("muted", "");
+  video.setAttribute("playsinline", "");
+
   // Check for BarcodeDetector support
   if (!("BarcodeDetector" in window)) {
     alert("Barcode Detection API is not supported in this browser.");

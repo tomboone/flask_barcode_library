@@ -45,7 +45,7 @@ def add_book(book_id):
 
     if book is not None:  # if book exists
         flash(  # flash message
-            f'Book "{book}" already in library',
+            f'Book "{book.title}" already in library',
             'info'
         )
         return redirect(url_for('scanner.index'))

@@ -4,7 +4,7 @@ Flask configuration
 import os
 
 
-class Config:
+class Config:  # pylint: disable=too-few-public-methods
     """
     Configuration class
     """
